@@ -1,1 +1,0 @@
-create database my_first_cakePHP_app
