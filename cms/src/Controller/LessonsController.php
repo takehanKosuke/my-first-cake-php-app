@@ -6,6 +6,8 @@
   {
     public function index()
     {
+      // ↓レイアウトファイルを指定するファイル
+      $this->viewBuilder()->layout('my_application');
       $lessons = $this->Lessons->find('all')
                   ->order(['title' => 'DESC'])
                   ->limit(2)
