@@ -5,6 +5,9 @@
 <h1>Lessons一覧</h1>
 <ul>
   <?php foreach ($lessons as $lesson) : ?>
-    <li><?= h($lesson-> title)?></li>
+    <li>
+      <!-- ↓railsでいうlink_to的なやつ！ -->
+      <?= $this->Html->link($lesson->title, ['action'=>'view', $lesson->id]); ?>
+    </li>
   <?php endforeach; ?>
 </ul>

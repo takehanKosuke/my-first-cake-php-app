@@ -14,4 +14,13 @@
                   ->where(['title like' => '%理学']);
       $this->set(compact('lessons'));
     }
+
+    // railsで言うところのshowアクション
+    public function view($id = null)
+    {
+      $this->viewBuilder()->layout('my_application');
+      $lesson = $this->Lessons->get($id);
+      $this->set(compact('lesson'));
+    }
+
   }
