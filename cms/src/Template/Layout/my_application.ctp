@@ -11,6 +11,9 @@
 </head>
 <body>
     <div class="container clearfix">
+        <!-- Template/Element配下がrailsの部分テンプレートを書くところ -->
+        <!-- 部分テンプレートの呼び出し方は↓ -->
+        <?= $this-> element('header') ?>
         <!-- ↓こいつがrailsでいうyeild的なやつ！！！ -->
         <?= $this->fetch('content') ?>
     </div>
