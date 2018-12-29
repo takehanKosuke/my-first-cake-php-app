@@ -6,7 +6,7 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 
-class lessonsTable extends Table
+class LessonsTable extends Table
 {
   public function initialize(array $config)
   {

@@ -2,16 +2,17 @@
 
   namespace App\Controller;
 
+
   class LessonsController extends AppController
   {
     public function index()
     {
       // ↓レイアウトファイルを指定するファイル
       $this->viewBuilder()->layout('my_application');
-      $lessons = $this->Lessons->find('all')
-                  ->order(['title' => 'DESC'])
-                  ->limit(2)
-                  ->where(['title like' => '%理学']);
+      $lessons = $this->Lessons->find('all');
+                  // ->order(['title' => 'DESC'])
+                  // ->limit(2)
+                  // ->where(['title like' => '%理学']);
       $this->set(compact('lessons'));
     }
 
@@ -23,4 +24,18 @@
       $this->set(compact('lesson'));
     }
 
+    public function add()
+    {
+      $this->viewBuilder()->layout('my_application');
+      // ↓newEntityが【@lesson = Lesson.new】的なやつだと思う。
+      $lesson = $this->Lessons->newEntity();
+      // もしpostメソッドだったら以下のコードを実行してね
+      if ($this->request->is('post')){
+        $lesson = $this->Lessons->patchEntity($lesson, $this->request->data);
+        $this->Lessons->save($lesson);
+        // リダイレクト処理↓
+        return $this->redirect(['action'=>'index']);
+      }
+      $this->set(compact('lesson'));
+    }
   }

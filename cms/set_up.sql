@@ -1,6 +1,6 @@
 
 create database my_first_cakePHP_app;
-grate all on my_first_cakePHP_app.*to kosukephp@localhost identified by 'DB_PASSWOERD';
+grate all on my_first_cakePHP_app.* to kosukephp@localhost identified by 'DB_PASSWOERD';
 use my_first_cakePHP_app
 
 create table users (
