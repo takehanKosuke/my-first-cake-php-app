@@ -3,24 +3,26 @@
   namespace App\Controller;
 
 
-  class LessonsController extends AppController
+  class ProductsController extends AppController
   {
     public function index()
     {
       // ↓レイアウトファイルを指定するファイル
       $this->viewBuilder()->layout('my_application');
-      $lessons = $this->Lessons->find('all');
+      $products = $this->products->find('all');
+
+      return debug($products); 
                   // ->order(['title' => 'DESC'])
                   // ->limit(2)
                   // ->where(['title like' => '%理学']);
-      $this->set(compact('lessons'));
+      $this->set(compact('products'));
     }
 
     // railsで言うところのshowアクション
     public function view($id = null)
     {
       $this->viewBuilder()->layout('my_application');
-      $lesson = $this->Lessons->get($id);
+      $lesson = $this->products->get($id);
       $this->set(compact('lesson'));
     }
 
@@ -28,11 +30,11 @@
     {
       $this->viewBuilder()->layout('my_application');
       // ↓newEntityが【@lesson = Lesson.new】的なやつだと思う。
-      $lesson = $this->Lessons->newEntity();
+      $lesson = $this->products->newEntity();
       // もしpostメソッドだったら以下のコードを実行してね
       if ($this->request->is('post')){
-        $lesson = $this->Lessons->patchEntity($lesson, $this->request->data);
-        $this->Lessons->save($lesson);
+        $lesson = $this->products->patchEntity($lesson, $this->request->data);
+        $this->products->save($lesson);
         // リダイレクト処理↓
         return $this->redirect(['action'=>'index']);
       }
