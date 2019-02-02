@@ -9,9 +9,8 @@
     {
       // ↓レイアウトファイルを指定するファイル
       $this->viewBuilder()->layout('my_application');
-      $products = $this->products->find('all');
+      $products = $this->Products->find('all');
 
-      return debug($products); 
                   // ->order(['title' => 'DESC'])
                   // ->limit(2)
                   // ->where(['title like' => '%理学']);
@@ -21,14 +20,13 @@
     // railsで言うところのshowアクション
     public function view($id = null)
     {
-      $this->viewBuilder()->layout('my_application');
+
       $lesson = $this->products->get($id);
       $this->set(compact('lesson'));
     }
 
     public function add()
     {
-      $this->viewBuilder()->layout('my_application');
       // ↓newEntityが【@lesson = Lesson.new】的なやつだと思う。
       $lesson = $this->products->newEntity();
       // もしpostメソッドだったら以下のコードを実行してね
