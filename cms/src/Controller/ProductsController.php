@@ -31,9 +31,13 @@
       // もしpostメソッドだったら以下のコードを実行してね
       if ($this->request->is('post')){
         $product = $this->Products->patchEntity($product, $this->request->data);
-        $this->Products->save($product);
-        // リダイレクト処理↓
-        return $this->redirect(['action'=>'index']);
+        if ($this->Products->save($product)){
+          // リダイレクト処理↓
+          return $this->redirect(['action'=>'index']);
+        } else {
+          // code...
+        }
+
       }
       $this->set(compact('product'));
     }
