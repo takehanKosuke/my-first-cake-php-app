@@ -20,22 +20,21 @@
     // railsで言うところのshowアクション
     public function view($id = null)
     {
-
-      $lesson = $this->products->get($id);
-      $this->set(compact('lesson'));
+      $product = $this->Products->get($id);
+      $this->set(compact('product'));
     }
 
     public function add()
     {
-      // ↓newEntityが【@lesson = Lesson.new】的なやつだと思う。
-      $lesson = $this->products->newEntity();
+      // ↓newEntityが【@product = Product.new】的なやつだと思う。
+      $product = $this->Products->newEntity();
       // もしpostメソッドだったら以下のコードを実行してね
       if ($this->request->is('post')){
-        $lesson = $this->products->patchEntity($lesson, $this->request->data);
-        $this->products->save($lesson);
+        $product = $this->Products->patchEntity($product, $this->request->data);
+        $this->Products->save($product);
         // リダイレクト処理↓
         return $this->redirect(['action'=>'index']);
       }
-      $this->set(compact('lesson'));
+      $this->set(compact('product'));
     }
   }
