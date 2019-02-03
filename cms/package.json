@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "uikit": "^3.0.3"
+  }
+  {
+    "name": "cakephp",
+    "version": "0.0.1",
+    "dependencies": {},
+    "private": true,
+    "scripts": {
+      "prod": "gulp --production",
+      "dev": "gulp watch"
+    },
+    "devDependencies": {
+      "bootstrap-sass": "^3.3.7",
+      "gulp": "^3.9.1",
+      "jquery": "^3.1.0",
+      "cakephp3-elixir": "^1.0.5",
+      "laravel-elixir-del": "^0.1.1",
+      "laravel-elixir-webpack-official": "^1.0.2",
+      "lodash": "^4.16.2"
+    }
+  }
+}
