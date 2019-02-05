@@ -12,7 +12,10 @@
   {
     public function initialize(array $config)
     {
-        $this->addBehavior('Timestamp');
+      $this->addBehavior('Timestamp');
+      $this->belongsToMany('Users', [
+        'joinTable' => 'carts',
+      ]);
     }
 
     public function validationDefault(Validator $validator)
