@@ -19,12 +19,12 @@
     {
       $validator
         // 空文字を許可しない
-        ->notEmpty(`name`)
-        ->requirePresence(`name`)
+        ->notEmpty('name')
+        ->requirePresence('name')
         // 文字の長さを２５文字より大きくさせない
-        ->add(`name`, [`length` => [`rule` => [`maxLength`, 25], `message` => `name length must be under 25`] ])
-        ->notEmpty(`price`)
-        ->requirePresence(`price`);
+        // ->add('name', ['length' => ['rule' => ['maxLength', 25], 'message' => 'name length must be under 25'] ])
+        ->notEmpty('price')
+        ->requirePresence('price');
 
       return $validator;
     }

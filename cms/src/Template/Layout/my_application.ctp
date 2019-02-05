@@ -16,6 +16,8 @@
         <!-- Template/Element配下がrailsの部分テンプレートを書くところ -->
         <!-- 部分テンプレートの呼び出し方は↓ -->
         <?= $this-> element('header') ?>
+        <!-- flashメッセージの受取 -->
+        <?= $this->Flash->render() ?>
         <!-- ↓こいつがrailsでいうyeild的なやつ！！！ -->
         <?= $this->fetch('content') ?>
     </div>

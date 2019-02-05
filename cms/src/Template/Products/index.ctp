@@ -10,6 +10,14 @@
   <div class="product-list">
     <div class="uk-card uk-background-muted uk-card-hover uk-card-body">
         <h3 class="uk-card-title"><?= $this->Html->link($product->name, ['action'=>'view', $product->id]); ?></h3>
+        <p><?= $this->Html->link('[Edit]', ['action'=>'edit', $product->id]); ?></p>
+        <?=
+          $this->Form->postLink(
+            '[x]',
+            ['action'=>'delete', $product->id],
+            ['confirm'=>'Are you sure?']
+          )
+        ?>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
     </div>
   </div>
