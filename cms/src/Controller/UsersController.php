@@ -7,6 +7,12 @@
   {
     public function index()
     {
+      {
+          $users = $this->paginate($this->Users);
+
+          $this->set(compact('users'));
+          $this->set('_serialize', ['users']);
+      }
       // ↓レイアウトファイルを指定するファイル
       $this->viewBuilder()->layout('my_application');
       $users = $this->Users->find('all');
@@ -14,19 +20,19 @@
                   // ->order(['title' => 'DESC'])
                   // ->limit(2)
                   // ->where(['title like' => '%理学']);
-      $this->set(compact('products'));
+      $this->set(compact('users'));
     }
 
     // railsで言うところのshowアクション
     public function view($id = null)
     {
       $user = $this->Users->get($id);
-      $this->set(compact('product'));
+      $this->set(compact('user'));
     }
 
     public function add()
     {
-      // ↓newEntityが【@product = User.new】的なやつだと思う。
+      // ↓newEntityが【@user = User.new】的なやつだと思う。
       $user = $this->Users->newEntity();
       // もしpostメソッドだったら以下のコードを実行してね
       if ($this->request->is('post')){
@@ -40,12 +46,12 @@
           $this->Flash->error('Add Error!');
         }
       }
-      $this->set(compact('product'));
+      $this->set(compact('user'));
     }
 
     public function edit($id = null)
     {
-      // ↓newEntityが【@product = User.new】的なやつだと思う。
+      // ↓newEntityが【@user = User.new】的なやつだと思う。
       $user = $this->Users->get($id);
       // もしpostメソッドだったら以下のコードを実行してね
       if ($this->request->is(['post', 'patch', 'put'])){
@@ -59,13 +65,13 @@
           $this->Flash->error('Edit Error!');
         }
       }
-      $this->set(compact('product'));
+      $this->set(compact('user'));
     }
 
     public function delete($id = null)
     {
       $this->request->allowMethod(['post', 'delete']);
-      // ↓newEntityが【@product = User.new】的なやつだと思う。
+      // ↓newEntityが【@user = User.new】的なやつだと思う。
       $user = $this->Users->get($id);
       if ($this->Users->delete($user)){
         // flashメッセージの作成
@@ -75,6 +81,35 @@
       } else {
         $this->Flash->error('delete Error!');
       }
-      $this->set(compact('product'));
+      $this->set(compact('user'));
+    }
+
+
+
+    // ログイン系のコード
+    public function login()
+    {
+      if ($this->request->is('post')) {
+        $user = $this->Auth->identify();
+        if ($user) {
+          $this->Auth->setUser($user);
+          return $this->redirect($this->Auth->redirectUrl());
+        }
+        $this->Flash->error('ユーザー名またはパスワードが不正です。');
+      }
+    }
+
+    public function initialize()
+    {
+        parent::initialize();
+        $this->Auth->allow(['logout']);
+        // 許可アクションリストに 'add' アクションを追加
+        $this->Auth->allow(['logout', 'add']);
+    }
+
+    public function logout()
+    {
+        $this->Flash->success('ログアウトしました。');
+        return $this->redirect($this->Auth->logout());
     }
   }
