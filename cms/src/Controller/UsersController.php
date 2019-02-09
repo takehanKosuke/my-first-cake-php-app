@@ -27,7 +27,12 @@
     public function view($id = null)
     {
       $user = $this->Users->get($id);
-      $this->set(compact('user'));
+      $this->set(compact('user', [
+          'contain' => 'Products'
+        ]));
+      // $carts = $this->Carts->find('all');
+      // $this->set(compact('carts'));
+      // $carts = $this->Carts->where(['user_id' => $this->$user->$id]);
     }
 
     public function add()

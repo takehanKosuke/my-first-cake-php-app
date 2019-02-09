@@ -13,6 +13,8 @@
     public function initialize(array $config)
     {
         $this->addBehavior('Timestamp');
+        // $this->belongsTo($Users);
+        // $this->belongsTo($products);
     }
 
     // public function validationDefault(Validator $validator)

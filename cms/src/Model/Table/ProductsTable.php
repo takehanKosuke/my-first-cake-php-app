@@ -16,6 +16,7 @@
       $this->belongsToMany('Users', [
         'joinTable' => 'carts',
       ]);
+      // $this->HasMany($Carts);
     }
 
     public function validationDefault(Validator $validator)

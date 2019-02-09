@@ -10,11 +10,13 @@
       // ↓レイアウトファイルを指定するファイル
       $this->viewBuilder()->layout('my_application');
       $products = $this->Products->find('all');
+      $user = $this->Auth->user();
 
                   // ->order(['title' => 'DESC'])
                   // ->limit(2)
                   // ->where(['title like' => '%理学']);
       $this->set(compact('products'));
+      $this->set(compact('user'));
     }
 
     // railsで言うところのshowアクション
